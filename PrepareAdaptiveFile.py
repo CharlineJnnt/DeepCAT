@@ -50,6 +50,6 @@ for ff in ffs:
     f.write(first_row)
     f.write('\n')
     f.close()
-    with open(newff, 'w') as f:
+    with open(newff, 'a') as f:
        writer = csv.writer(f, delimiter='\t')
        writer.writerows(c)
