@@ -549,16 +549,17 @@ def ObtainCL(InputFile,VScore, gap, gapn, cutoff=7, UseV=True, outDir='./',Nthre
     count=0
     ALLLines=ff.readlines()
     CDR3Dict={}
-    for line in ALLLines[1:]: ## get rid of header line
-        ww=line.strip().split('\t')
-        Seqs0.append(ww[0])
-        if UseV:
-            Vgene0.append(ww[1])
-        else:
-            Vgene0.append('')
-        CDR3Dict[count]=ww[1:]
-        ID.append(count)
-        count+=1
+    for line in ALLLines [1:]: ## get rid of header line
+        if line != '\n':
+            ww=line.strip().split('\t')
+            Seqs0.append(ww[0])
+            if UseV:
+                Vgene0.append(ww[1])
+            else:
+                Vgene0.append('')
+            CDR3Dict[count]=ww[1:]
+            ID.append(count)
+            count+=1
     print("Building motif index")
     mD=IndexSeqByMotif(Seqs0,ID)
     print("Generating motif sharing graph")
